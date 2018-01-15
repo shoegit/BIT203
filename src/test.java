@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author ngsm
  */
 public class test {
-    stest
+
+    public static void main(String[] args) {
+        
+        double hourlyRate = 12.50;
+        int hoursWorked = 30;
+        double weeklyWage = hourlyRate * hoursWorked;
+        System.out.printf("The weekly wage is RM%5.2f%n",  weeklyWage);
+
+    }
 }
