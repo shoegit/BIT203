@@ -10,14 +10,23 @@ public class test {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        double hourlyRate = 12.50;
+        final double HOURLYRATE = 12.50;
+        final double OVERTIMERATE = 1.5;
+        final int OVERTIMERANGE = 40;
         
         // prompt user for hours worked
         System.out.print("Enter the hours worked :");
         int hoursWorked = sc.nextInt();
+        double weeklyWage;
         
-        // display the weekly wage
-        double weeklyWage = hourlyRate * hoursWorked;
+        if (hoursWorked > OVERTIMERANGE)
+        {
+            int extraHours = hoursWorked - OVERTIMERANGE;
+            double extraPay = extraHours * HOURLYRATE * OVERTIMERATE;
+            weeklyWage = HOURLYRATE * OVERTIMERANGE + extraPay;
+        }
+        else
+            weeklyWage = HOURLYRATE * hoursWorked;
         System.out.printf("The weekly wage is RM%5.2f%n",  weeklyWage);
 
     }
