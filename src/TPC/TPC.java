@@ -55,7 +55,7 @@ public class TPC {
         String result = "Projects containing : '" + searchString + "'\n";
         for (int i = 0; i < numberOfProjects; i++) {
             if (tpcProjects[i].getProjectName().contains(searchString)) {
-                result += tpcProjects[i].getProjectNum() + " " + tpcProjects[i].getProjectName();
+                result += tpcProjects[i].getProjectNum() + " " + tpcProjects[i].getProjectName() + "\n";
             }
         }
         return result;
@@ -65,9 +65,9 @@ public class TPC {
      * showAllProjects() method to return a list of all project numbers and names  
      */
     public String showAllProjects() {
-        String result = "All Projects:";
+        String result = "All Projects:\n";
         for (int i = 0; i < numberOfProjects; i++) {
-            result += tpcProjects[i].getProjectNum() + " " + tpcProjects[i].getProjectName();
+            result += tpcProjects[i].getProjectNum() + " " + tpcProjects[i].getProjectName() + "\n";
         }
         return result;
     }

@@ -12,6 +12,11 @@ public class Project {
     private String projectName;
     private int projectNum;
     private static int nextProjectNo = 0;
+    
+    private int numTasks;   // the number of tasks in the project
+    private Task[] projectTasks;    // all the tasks for this project
+    private final int MAXTASKS = 50;
+    
 
     /**
      * Constructor to set the project Name and generate project number
@@ -25,6 +30,14 @@ public class Project {
             this.projectName = projectName;
         }
         this.projectNum = ++nextProjectNo;
+        
+        // initialize the array of tasks
+        projectTasks = new Task[MAXTASKS];
+        numTasks = 0;
+    }
+
+    public int getNumTasks() {
+        return numTasks;
     }
 
     /**
@@ -57,6 +70,21 @@ public class Project {
         return projectNum;
     }
 
+    /** A method to add a Task to a project
+     * 
+     * @param description
+     * @param estHours
+     * @return Task that was created
+     */
+    public Task addTask(String description, int estHours)
+    {
+        if (projectTasks.length == numTasks)
+            return null;
+        Task newTask = new Task(this, description, estHours);
+        projectTasks[numTasks++] = newTask;
+        return newTask;
+    }
+    
     /**
      * toString method
      *
