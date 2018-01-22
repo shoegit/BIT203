@@ -9,7 +9,7 @@ public class TPC {
     
     private int numberOfProjects;
     private Project[] tpcProjects;
-    private final int MAX = 50;         // only 50 projects allowed!!
+    private final int MAX = 5;         // only 50 projects allowed!!
     
     /** 
      * Constructor to initialize the projects array
