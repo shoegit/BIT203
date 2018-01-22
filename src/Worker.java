@@ -18,6 +18,31 @@ public class Worker {
     public static final double OVERTIMERATE = 1.5;
     public static final int OVERTIMERANGE = 40;
 
+    
+    /** 
+     * A method to calculate the wages due to a worker based on their hourly rate, hours worked
+     * and whether there is any overtime.
+     * overtime wages =  one and a half the normal rate for any extra hour worked greater than 40.
+     */
+    public double calculateWage()
+    {
+        double wages = 0.0;
+        // check whether there is overtime
+        int extraHours = hoursWorked - OVERTIMERANGE;
+        if (extraHours > 0)     // there is overtime
+        {
+            double overtimePay = extraHours * OVERTIMERATE * hourlyRate;
+            wages = OVERTIMERANGE * hourlyRate + overtimePay;   
+        }
+        else    // no overtime
+        {
+            wages = hoursWorked * hourlyRate;
+        }
+        return wages;
+        
+    }
+    
+    
     /**
      * default constructor
      */
