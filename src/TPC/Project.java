@@ -39,6 +39,20 @@ public class Project {
     public int getNumTasks() {
         return numTasks;
     }
+    
+    /**
+     * A method that returns info about all tasks in a String
+     * @return String containing task info
+     */
+    public String allTasks()
+    {
+        if (numTasks == 0)
+            return "No tasks defined yet";
+        String results = "All Tasks for This Project";
+        for (int i = 0; i < numTasks; i++)
+            results += this.projectTasks[i].toString() + "\n";
+        return results;
+    }
 
     /**
      * getter for the project name
