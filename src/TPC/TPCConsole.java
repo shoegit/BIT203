@@ -157,5 +157,7 @@ public class TPCConsole {
         
         if (newEmp != null)
             System.out.println("Employee created: " + newEmp.toString());
+        else
+            System.out.println("Employee not created, name already exists");
     }
 }

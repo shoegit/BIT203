@@ -36,4 +36,9 @@ public class FullTimeEmployee extends Employee{
     {
         return getName() + " with employee number " + getEmpNum() + " and monthly salary " + monthlySalary;
     }
+
+    @Override
+    public double calculatePay() {
+        return monthlySalary;
+    }
 }

@@ -37,6 +37,12 @@ public class PartTimeEmployee extends Employee{
     {
         return getName() + " with employee number " + getEmpNum() + " and hourly rate " + hourlyRate;
     }
+    
+    public double calculatePay()
+    {
+        // temporarily just give them 40 * hourlyRate
+        return hourlyRate * 40;
+    }
 }
     
 

@@ -10,7 +10,7 @@ package TPC;
  * An Employee has a empNum and name
  * @author ngsm
  */
-public abstract class Employee {
+public abstract class Employee implements Comparable<Employee>{
     
     // instance variables
     private int empNum;
@@ -43,5 +43,33 @@ public abstract class Employee {
     
     abstract public String toString();
     
+    /**
+     * A method to calculate the pay for an employee
+     * @return the pay that is due to the employee
+     */
+    abstract public double calculatePay();
     
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Employee))
+            return false;
+        Employee rhs = (Employee) obj;
+        // two employees are equal if they have the same name
+        // demonstration only
+        if (this.getName().equals(rhs.getName()))
+            return true;
+        else
+            return false;
+    }
+    
+    @Override
+    public int compareTo(Employee obj)
+    {
+        if (this == obj)    // same object
+            return 0;
+        return (this.getName().compareTo(obj.getName()));
+    }
 }

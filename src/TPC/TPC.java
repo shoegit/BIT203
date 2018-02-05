@@ -1,5 +1,7 @@
 package TPC;
 
+import java.util.*;
+
 /**
  * TPC represents a Company (The Project Company)
  *
@@ -11,9 +13,7 @@ public class TPC {
     private Project[] tpcProjects;
     private final int MAX = 5;         // only 50 projects allowed!!
 
-    private int numEmployees;
-    private Employee[] tpcEmployees;
-    private final int MAXEMP = 5;
+    private ArrayList<Employee> tpcEmployees;
 
     /**
      * Constructor to initialize the projects array
@@ -22,7 +22,7 @@ public class TPC {
         tpcProjects = new Project[MAX];
         numberOfProjects = 0;
 
-        tpcEmployees = new Employee[MAXEMP];
+        tpcEmployees = new ArrayList<>();
     }
 
     /**
@@ -42,13 +42,26 @@ public class TPC {
 
     }
 
+    public ArrayList<Employee> getTpcEmployees() {
+        return tpcEmployees;
+    }
+
+    public void setTpcEmployees() {
+        if (tpcEmployees == null)
+            tpcEmployees = new ArrayList<>();
+    }
+
     // creates a Full Time Employee object and add to TPCEmployees[]
     public FullTimeEmployee addFullTimeEmployee(String name, double salary) {
         
         FullTimeEmployee fte = new FullTimeEmployee(name, salary);
-        // add to the array
-        tpcEmployees[numEmployees++] = fte;
-        return fte;
+        if (tpcEmployees.contains(fte))
+            return null;
+        else
+        {
+            tpcEmployees.add(fte);
+            return fte;
+        }
     }
 
 // creates a Part Time Employee object and add to TPCEmployees[]	
@@ -56,8 +69,9 @@ public class TPC {
         
         PartTimeEmployee pte = new PartTimeEmployee(name, hourlyRate);
         // add to the array
-        tpcEmployees[numEmployees++] = pte;
-        return pte;
+        if (tpcEmployees.add(pte))
+            return pte;
+        return null;
     }
 
     /* findProject() method to return a project based on a project number.
@@ -97,4 +111,46 @@ public class TPC {
         return result;
     }
 
+    public Employee findEmployee(int empNum)
+    {
+        for (int i = 0; i < tpcEmployees.size(); i++)
+        {
+            Employee e = tpcEmployees.get(i);
+            if (e.getEmpNum()== empNum)
+                return e;
+        }
+        return null;
+        
+    }
+    
+    /**
+     * A method to calculate the total pay for ALL employees in TPC
+     * @return 
+     */
+    public double totalPay()
+    {
+        double total = 0.09;
+        Iterator<Employee> itr = tpcEmployees.iterator();
+        while (itr.hasNext())
+        {
+            Employee e = itr.next();
+            total += e.calculatePay();
+        }
+        return total;
+    }
+    
+    /**
+     * A method to find an employee based on a name
+     * @param name
+     * @return 
+     */
+    public Employee findEmployee(String name)
+    {
+        for(Employee e:tpcEmployees)
+        {
+            if (e.getName().equals(name))
+                return e;
+        }
+        return null;
+    }
 }
