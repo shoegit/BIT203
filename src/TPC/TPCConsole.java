@@ -20,6 +20,7 @@ public class TPCConsole {
             System.out.println("2. Find a project");
             System.out.println("3. Enter task for project");
             System.out.println("4. View project tasks");
+            System.out.println("5. Add Employee");
             System.out.println("0. Quit");
             System.out.print("Enter choice :");
             choice = sc.nextLine().charAt(0);
@@ -35,6 +36,9 @@ public class TPCConsole {
                     break;
                 case '4':
                     viewProjectTasks();
+                    break;
+                case '5':
+                    addEmployee();
                     break;
                 case '0':
                     System.out.println("Goodbye");
@@ -116,5 +120,42 @@ public class TPCConsole {
         } else {
             System.out.println(tpc.findProject(wanted));
         }
+    }
+
+    /**
+     * A method to add a Employee to TPC
+     */
+    public static void addEmployee() {
+        System.out.println("Do you want to add ");
+        System.out.println("1. Full Time Employee");
+        System.out.println("2. Part Time Employee");
+        String choice = sc.nextLine();
+        Employee newEmp = null;
+        if (choice.equals("1")) {
+            System.out.print("Enter Employee Name :");
+            String empName = sc.nextLine();
+            System.out.print("Enter Employee Monthly Salary :");
+            double salary = sc.nextDouble();
+            sc.nextLine();
+
+            newEmp = tpc.addFullTimeEmployee(empName, salary);
+
+        } else if (choice.equals("2")) {
+            System.out.print("Enter Employee Name :");
+            String empName = sc.nextLine();
+            System.out.print("Enter Employee Hourly Rate :");
+            double rate = sc.nextDouble();
+            sc.nextLine();
+
+            newEmp = tpc.addPartTimeEmployee(empName, rate);
+
+        }
+        else // not 1 or 2
+        {
+            System.out.println("Invalid choice");
+        }
+        
+        if (newEmp != null)
+            System.out.println("Employee created: " + newEmp.toString());
     }
 }

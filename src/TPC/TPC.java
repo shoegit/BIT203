@@ -11,12 +11,18 @@ public class TPC {
     private Project[] tpcProjects;
     private final int MAX = 5;         // only 50 projects allowed!!
 
+    private int numEmployees;
+    private Employee[] tpcEmployees;
+    private final int MAXEMP = 5;
+
     /**
      * Constructor to initialize the projects array
      */
     public TPC() {
         tpcProjects = new Project[MAX];
         numberOfProjects = 0;
+
+        tpcEmployees = new Employee[MAXEMP];
     }
 
     /**
@@ -34,6 +40,24 @@ public class TPC {
         tpcProjects[numberOfProjects++] = newProj;
         return newProj;         // return the project that was created
 
+    }
+
+    // creates a Full Time Employee object and add to TPCEmployees[]
+    public FullTimeEmployee addFullTimeEmployee(String name, double salary) {
+        
+        FullTimeEmployee fte = new FullTimeEmployee(name, salary);
+        // add to the array
+        tpcEmployees[numEmployees++] = fte;
+        return fte;
+    }
+
+// creates a Part Time Employee object and add to TPCEmployees[]	
+    public PartTimeEmployee addPartTimeEmployee(String name, double hourlyRate) {
+        
+        PartTimeEmployee pte = new PartTimeEmployee(name, hourlyRate);
+        // add to the array
+        tpcEmployees[numEmployees++] = pte;
+        return pte;
     }
 
     /* findProject() method to return a project based on a project number.
@@ -62,7 +86,8 @@ public class TPC {
     }
 
     /**
-     * showAllProjects() method to return a list of all project numbers and names  
+     * showAllProjects() method to return a list of all project numbers and
+     * names
      */
     public String showAllProjects() {
         String result = "All Projects:\n";
