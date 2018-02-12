@@ -140,7 +140,7 @@ public class TPC {
      */
     public Employee findEmployee(String name) {
         for (Employee e : tpcEmployees) {
-            if (e.getName().equals(name)) {
+            if (e.getName().equalsIgnoreCase(name)) {
                 return e;
             }
         }

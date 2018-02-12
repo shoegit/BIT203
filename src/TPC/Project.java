@@ -1,6 +1,6 @@
 package TPC;
 
-import java.util.Objects;
+import java.util.*;
 
 /**
  * A class to represent <code>Project</code> objects. A Project has a
@@ -9,15 +9,13 @@ import java.util.Objects;
  * @version 2.0 Modified: 22/1/2018
  * @author ngsm
  */
-public class Project implements Comparable<Project>{
+public class Project implements Comparable<Project>, Cloneable{
 
     private String projectName;
     private int projectNum;
     private static int nextProjectNo = 0;
     
-    private int numTasks;   // the number of tasks in the project
-    private Task[] projectTasks;    // all the tasks for this project
-    private final int MAXTASKS = 50;
+    private ArrayList<Task> projectTasks;    // all the tasks for this project
     
 
     /**
@@ -34,12 +32,12 @@ public class Project implements Comparable<Project>{
         this.projectNum = ++nextProjectNo;
         
         // initialize the array of tasks
-        projectTasks = new Task[MAXTASKS];
-        numTasks = 0;
+        projectTasks = new ArrayList<>();
+        
     }
 
     public int getNumTasks() {
-        return numTasks;
+        return projectTasks.size();
     }
     
     /**
@@ -48,11 +46,11 @@ public class Project implements Comparable<Project>{
      */
     public String allTasks()
     {
-        if (numTasks == 0)
+        if (getNumTasks() == 0)
             return "No tasks defined yet";
-        String results = "All Tasks for This Project";
-        for (int i = 0; i < numTasks; i++)
-            results += this.projectTasks[i].toString() + "\n";
+        String results = "All Tasks for This Project\n";
+        for (Task t:projectTasks)
+            results += t.toString() + "\n";
         return results;
     }
 
@@ -94,14 +92,20 @@ public class Project implements Comparable<Project>{
      */
     public Task addTask(String description, int estHours)
     {
-        if (projectTasks.length == numTasks)
-            return null;
-        Task newTask = new Task(this, description, estHours);
-        projectTasks[numTasks++] = newTask;
-        return newTask;
+       Task newTask = new Task(this, description, estHours);
+       if (projectTasks.contains(newTask))
+           return null;     // task already exists
+       if (projectTasks.add(newTask))
+              return newTask;
+        return null;
     }
     
-    
+    /**
+     * equals method for Project
+     * checks that a project is equal to another if they have the same name
+     * @param obj the other object to compare
+     * @return true if two projects have the same name, false otherwise
+     */
     @Override
     public boolean equals(Object obj)
     {
@@ -131,6 +135,23 @@ public class Project implements Comparable<Project>{
         return "Project{" + "projectName=" + projectName + ", projectNum=" + projectNum + '}';
     }
 
+    /**
+     * overriding the Object.clone() method to clone a project
+     * @return the clone of the project  
+     */
+    @Override
+    public Object clone()
+    {
+       try
+       {
+           return super.clone();
+       }
+       catch (CloneNotSupportedException e)
+       {
+           return null;
+       }
+               
+    }
     
     @Override
     public int compareTo(Project t) {

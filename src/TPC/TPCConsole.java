@@ -21,6 +21,9 @@ public class TPCConsole {
             System.out.println("3. Enter task for project");
             System.out.println("4. View project tasks");
             System.out.println("5. Add Employee");
+            System.out.println("6. Find Employee");
+            System.out.println("7. Process Payroll");
+            System.out.println("8. Assign Task to Employee");
             System.out.println("0. Quit");
             System.out.print("Enter choice :");
             choice = sc.nextLine().charAt(0);
@@ -39,6 +42,12 @@ public class TPCConsole {
                     break;
                 case '5':
                     addEmployee();
+                    break;
+                case '6':
+                    findEmployee();
+                    break;
+                case '7':
+                    processPayroll();
                     break;
                 case '0':
                     System.out.println("Goodbye");
@@ -149,15 +158,46 @@ public class TPCConsole {
 
             newEmp = tpc.addPartTimeEmployee(empName, rate);
 
-        }
-        else // not 1 or 2
+        } else // not 1 or 2
         {
             System.out.println("Invalid choice");
         }
-        
-        if (newEmp != null)
+
+        if (newEmp != null) {
             System.out.println("Employee created: " + newEmp.toString());
-        else
+        } else {
             System.out.println("Employee not created, name already exists");
+        }
+    }
+
+    public static void findEmployee() {
+        System.out.print("Enter employee name to find:");
+        String wantedEmpName = sc.nextLine();
+        Employee e = tpc.findEmployee(wantedEmpName);
+        if (e == null) {
+            System.out.println("No employee with this name");
+        } else {
+            System.out.println("Employee found : " + e.toString());
+            if (e instanceof PartTimeEmployee) {
+                System.out.println("Do you want to enter Timesheet");
+                char answer = sc.nextLine().charAt(0);
+                if (answer == 'Y' || answer == 'y') {
+                    System.out.print("Enter hours worked :");
+                    int hours = sc.nextInt();
+                    sc.nextLine();
+                    if (((PartTimeEmployee) e).addTimesheet(hours)) {
+                        System.out.println("Timesheet added");
+                    } else {
+                        System.out.println("Timesheet not added");
+                    }
+                }
+            }
+
+        }
+    }
+
+    public static void processPayroll() {
+        double totalPayroll = tpc.totalPay();
+        System.out.println("Total pay for all employees " + totalPayroll);
     }
 }

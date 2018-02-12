@@ -5,11 +5,13 @@
  */
 package TPC;
 
+import java.util.Objects;
+
 /**
- *
+ * A class for representing Tasks of a Project
  * @author ngsm
  */
-public class Task {
+public class Task implements Comparable<Task> {
     
     private Project theProject;
     private String taskNum;
@@ -17,6 +19,7 @@ public class Task {
     private int estHours;
     private int actualHours;
     private TaskStatus status;
+    private Employee assignedEmp;
 
     public Task(Project theProject, String description, int estHours) {
         this.theProject = theProject;
@@ -25,6 +28,7 @@ public class Task {
         this.estHours = estHours;
         this.actualHours =0;
         this.status = TaskStatus.OUTSTANDING;
+        this.assignedEmp = null;
     }
 
     public String getDescription() {
@@ -64,8 +68,46 @@ public class Task {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.taskNum);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Task other = (Task) obj;
+        if (!Objects.equals(this.taskNum, other.taskNum)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+   
+    
+
+    @Override
     public String toString() {
         return "Task{" + "taskNum=" + taskNum + ", description=" + description + ", estHours=" + estHours + ", actualHours=" + actualHours + ", status=" + status + '}';
+    }
+
+    @Override
+    public int compareTo(Task t) {
+        return this.taskNum.compareTo(t.taskNum);
     }
     
 }
