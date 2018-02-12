@@ -1,5 +1,7 @@
 package TPC;
 
+import java.util.Objects;
+
 /**
  * A class to represent <code>Project</code> objects. A Project has a
  * projectName and projectNum
@@ -7,7 +9,7 @@ package TPC;
  * @version 2.0 Modified: 22/1/2018
  * @author ngsm
  */
-public class Project {
+public class Project implements Comparable<Project>{
 
     private String projectName;
     private int projectNum;
@@ -99,6 +101,26 @@ public class Project {
         return newTask;
     }
     
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Project))
+            return false;
+        Project otherProject = (Project) obj;
+        if (this.getProjectName().equalsIgnoreCase(otherProject.getProjectName()))
+               return true;
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.projectName.toLowerCase());
+        return hash;
+    }
     /**
      * toString method
      *
@@ -107,6 +129,12 @@ public class Project {
     @Override
     public String toString() {
         return "Project{" + "projectName=" + projectName + ", projectNum=" + projectNum + '}';
+    }
+
+    
+    @Override
+    public int compareTo(Project t) {
+        return this.getProjectName().toLowerCase().compareTo(t.getProjectName().toLowerCase());
     }
 
 }
