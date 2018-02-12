@@ -123,7 +123,7 @@ public class TPC {
      * @return
      */
     public double totalPay() {
-        double total = 0.09;
+        double total = 0.00;
         Iterator<Employee> itr = tpcEmployees.iterator();
         while (itr.hasNext()) {
             Employee e = itr.next();
