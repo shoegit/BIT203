@@ -3,7 +3,7 @@ package LabTest1Answers;
 import java.time.LocalDate;
 
 /**
- * REPLACE WITH YOUR STUDENTID
+ * Driver program to test inheritance hierarchy
  * @author ngsm
  */
 public class TestAnswers {

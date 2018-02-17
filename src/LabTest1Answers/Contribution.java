@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package LabTest1Answers;
 // import package - 2 marks
 import java.time.*;
 /**
- *
+ * If you are using this class in your assignment 
+ * please indicate that you are modifying from this version.
  * @author ngsm
  */
 public abstract class Contribution {    // header - 3 marks
