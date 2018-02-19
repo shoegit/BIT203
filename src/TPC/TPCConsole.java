@@ -23,7 +23,6 @@ public class TPCConsole {
             System.out.println("5. Add Employee");
             System.out.println("6. Find Employee");
             System.out.println("7. Process Payroll");
-            System.out.println("8. Assign Task to Employee");
             System.out.println("0. Quit");
             System.out.print("Enter choice :");
             choice = sc.nextLine().charAt(0);
@@ -73,6 +72,26 @@ public class TPCConsole {
         } else {
             System.out.println("Project found: " + proj.toString());
             System.out.println(proj.allTasks());
+            int taskChoice;
+            do {
+                System.out.println("Would you like to:");
+                System.out.println("1. assign task to employee");
+                System.out.println("2. update task");
+                System.out.println("0. return to main menu");
+                taskChoice = sc.nextInt();
+                sc.nextLine();
+                switch (taskChoice) {
+                    case 1:
+                        assignTask(proj);
+                        break;
+                    case 0:
+                        System.out.println("Returning to Main Menu");
+                        break;
+                    default:
+                        System.out.println("Invalid Choice");
+                        break;
+                }
+            } while (taskChoice != 0);
         }
     }
 
@@ -100,6 +119,36 @@ public class TPCConsole {
                 System.out.println("Task added to project");
             }
         }
+    }
+
+    /**
+     * A method to assign a task to an employee
+     */
+    public static void assignTask(Project p) {
+
+        System.out.print("Enter task number");
+        String taskNum = sc.nextLine();
+        Task foundTask = p.findTask(taskNum);
+        if (foundTask == null) {
+            System.out.println("No such task number");
+        } else {
+            System.out.println("Task found");
+            System.out.println(foundTask.toString());
+            System.out.println("Enter name of employee to assign this task to");
+            String empname = sc.nextLine();
+            Employee foundEmp = tpc.findEmployee(empname);
+            if (foundEmp == null) {
+                System.out.println("No employee with this name");
+            } else {
+                if (foundEmp.addTask(foundTask)) {  // employee knows about this task
+                    foundTask.setAssignedEmp(foundEmp);  // task knows about this Employee
+                    System.out.println("Task added successfully");
+                } else {
+                    System.out.println("Task not added");
+                }
+            }
+        }
+
     }
 
     /**
@@ -178,6 +227,7 @@ public class TPCConsole {
             System.out.println("No employee with this name");
         } else {
             System.out.println("Employee found : " + e.toString());
+            System.out.println(e.assignedTasks());
             if (e instanceof PartTimeEmployee) {
                 System.out.println("Do you want to enter Timesheet");
                 char answer = sc.nextLine().charAt(0);

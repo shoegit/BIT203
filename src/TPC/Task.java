@@ -21,6 +21,22 @@ public class Task implements Comparable<Task> {
     private TaskStatus status;
     private Employee assignedEmp;
 
+    public Project getTheProject() {
+        return theProject;
+    }
+
+    public void setTheProject(Project theProject) {
+        this.theProject = theProject;
+    }
+
+    public Employee getAssignedEmp() {
+        return assignedEmp;
+    }
+
+    public void setAssignedEmp(Employee assignedEmp) {
+        this.assignedEmp = assignedEmp;
+    }
+
     public Task(Project theProject, String description, int estHours) {
         this.theProject = theProject;
         this.taskNum = "P"+ theProject.getProjectNum() + "-" + (theProject.getNumTasks()+1);

@@ -5,6 +5,8 @@
  */
 package TPC;
 
+import java.util.ArrayList;
+
 /**
  * A class to represent <code>Employee</code> objects.
  * An Employee has a empNum and name
@@ -16,17 +18,21 @@ public abstract class Employee implements Comparable<Employee>{
     private int empNum;
     private String name;
     private static int nextNo = 10000;
+    private ArrayList<Task> empTasks;
+    
     
     public Employee()
     {
         empNum = nextNo++;
         name = "unknown";
+        empTasks = new ArrayList<>();
     }
     
     public Employee(String name)
     {
         empNum = nextNo++;
         this.name = name;
+        empTasks = new ArrayList<>();
     }
 
     public int getEmpNum() {
@@ -49,6 +55,22 @@ public abstract class Employee implements Comparable<Employee>{
      */
     abstract public double calculatePay();
     
+    /**
+     * A method to show all the tasks this employee has been assigned
+     * @return 
+     */
+    public String assignedTasks()
+    {
+        if (empTasks.size()==0)
+            return "No tasks assigned";
+        String taskList = "Tasks assigned to this employee\n";
+        for(Task t:empTasks)
+        {
+            taskList += t.getTaskNum() + " " + t.getDescription() + "\n";
+        }
+        return taskList;
+    }
+    
     @Override
     public boolean equals(Object obj)
     {
@@ -63,6 +85,13 @@ public abstract class Employee implements Comparable<Employee>{
             return true;
         else
             return false;
+    }
+    
+    public boolean addTask(Task newTaskForThisEmp)
+    {
+        if(empTasks.contains(newTaskForThisEmp))
+            return false;
+        return empTasks.add(newTaskForThisEmp);
     }
     
     @Override

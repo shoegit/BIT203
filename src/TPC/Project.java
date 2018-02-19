@@ -101,6 +101,21 @@ public class Project implements Comparable<Project>, Cloneable{
     }
     
     /**
+     * A method to find a task from a project
+     * @param tasknum
+     * @return Task with the matching tasknum, or null if not found
+     */
+    public Task findTask(String tasknum)
+    {
+        for(Task t:projectTasks)
+        {
+            if (t.getTaskNum().equalsIgnoreCase(tasknum))
+                return t;
+        }
+        return null;
+    }
+    
+    /**
      * equals method for Project
      * checks that a project is equal to another if they have the same name
      * @param obj the other object to compare
