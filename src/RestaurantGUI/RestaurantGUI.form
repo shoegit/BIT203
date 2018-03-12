@@ -31,7 +31,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
-                      <Component id="menuItemButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="menuItemButton" max="32767" attributes="0"/>
+                          <Component id="CreateOrderButton" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -45,7 +48,9 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="menuItemButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="159" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="CreateOrderButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="118" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,6 +73,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="CreateOrderButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Create New Order"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateOrderButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

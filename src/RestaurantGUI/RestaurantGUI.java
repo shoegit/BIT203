@@ -39,6 +39,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         menuItemButton = new javax.swing.JButton();
+        CreateOrderButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +54,13 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
+        CreateOrderButton.setText("Create New Order");
+        CreateOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateOrderButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,7 +72,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(233, 233, 233)
-                        .addComponent(menuItemButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(menuItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CreateOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,7 +84,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(42, 42, 42)
                 .addComponent(menuItemButton)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(CreateOrderButton)
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
@@ -86,6 +98,12 @@ public class RestaurantGUI extends javax.swing.JFrame {
         miDialog.setLocationRelativeTo(this);
         miDialog.setVisible(true);
     }//GEN-LAST:event_menuItemButtonActionPerformed
+
+    private void CreateOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateOrderButtonActionPerformed
+        // TODO add your handling code here:
+        NewOrderDialog orderDialog = new NewOrderDialog(this, true );
+        orderDialog.setVisible(true);
+    }//GEN-LAST:event_CreateOrderButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +141,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateOrderButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton menuItemButton;
     // End of variables declaration//GEN-END:variables
