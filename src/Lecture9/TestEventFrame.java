@@ -33,13 +33,14 @@ public class TestEventFrame extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       numTimes++;
+       lbl.setText("Button clicked " + numTimes + " times");
     }
     
     public static void main(String[] args)
     {
         TestEventFrame tf = new TestEventFrame();
-        tf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tf.addWindowListener(new WindowCloser());
         tf.setVisible(true);
         
     }
