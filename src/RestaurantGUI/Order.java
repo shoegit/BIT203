@@ -6,6 +6,7 @@
 package RestaurantGUI;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * Order represents the orders that a customer will make
@@ -18,6 +19,7 @@ public class Order {
     private String status;
     private int numPax;
     private Table theTable;
+    private ArrayList<OrderItem> orderedItems;
     
     public Order(Table theTable, int numPax)
     {
@@ -26,18 +28,31 @@ public class Order {
         this.theTable = theTable;
         this.ordertime = LocalDateTime.now();
         this.status = "new";
+        this.orderedItems = new ArrayList<>();
     }
 
     public LocalDateTime getOrdertime() {
         return ordertime;
     }
 
+    public OrderItem addItem(MenuItem mi, int quantity, String request)
+    {
+        OrderItem oi = new OrderItem(this, mi, quantity, request);
+        if (orderedItems.contains(oi))
+            return null;
+        orderedItems.add(oi);
+        return oi;
+    }
     public void setOrdertime(LocalDateTime ordertime) {
         this.ordertime = ordertime;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public int getOrderNo() {
+        return orderNo;
     }
 
     public void setStatus(String status) {
@@ -65,5 +80,26 @@ public class Order {
         return "Order " + orderNo + " for Table " + theTable.getTableNo() + " created at " + ordertime.toString();
     }
     
+    /**
+     * A method to get the total price of the order by adding the subtotals
+     * of each ordered item
+     * @return total price of the order
+     */
+   public double getTotal()
+   {
+       double total = 0.0;
+       for (OrderItem oi:orderedItems)
+           total += oi.getTotal();
+       return total;
+   }
    
+   /**
+    * A method to remove an order item from the arraylist
+    * @param unwanted the orderitem to be removed
+    * @return 
+    */
+   public boolean removeItem(OrderItem unwanted)
+   {
+       return orderedItems.remove(unwanted);
+   }
 }

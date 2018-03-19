@@ -161,8 +161,12 @@ public class NewOrderDialog extends javax.swing.JDialog {
             int tableNo = Integer.parseInt(tableNoTF.getText());
             int numPax = Integer.parseInt(numPaxTF.getText());
             Order theOrder = theRestaurant.createNewOrder(tableNo, numPax);
-            JOptionPane.showMessageDialog(this, "Order created " + theOrder.toString());
-        } catch (NumberFormatException e) {
+            RestaurantGUI rgui = (RestaurantGUI) this.getParent();
+            OrderListWindow orderList = new OrderListWindow(rgui, true, theOrder);
+            this.setVisible(false);
+     
+            orderList.setVisible(true);
+                    } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter numeric values");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error, Order not created");
