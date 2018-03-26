@@ -34,6 +34,30 @@ public class OrderItem {
         return hash;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getSpecialRequest() {
+        return specialRequest;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setSpecialRequest(String specialRequest) {
+        this.specialRequest = specialRequest;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -53,6 +77,11 @@ public class OrderItem {
             return false;
         }
         return true;
+    }
+    
+    public MenuItem getMenuItem()
+    {
+        return theMenuItem;
     }
     
     public double getTotal()

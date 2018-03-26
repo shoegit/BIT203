@@ -34,6 +34,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="menuItemButton" max="32767" attributes="0"/>
                           <Component id="CreateOrderButton" max="32767" attributes="0"/>
+                          <Component id="viewOrder" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -50,7 +51,9 @@
               <Component id="menuItemButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="CreateOrderButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="118" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="viewOrder" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,6 +84,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateOrderButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="viewOrder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View All Orders"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewOrderActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

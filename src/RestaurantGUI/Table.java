@@ -29,6 +29,12 @@ public class Table {
         tableOrders = new ArrayList<>();
 
     }
+    
+    // get the orders from that table
+    public ArrayList<Order> getOrders()
+    {
+        return tableOrders;
+    }
 
     public int getTableNo() {
         return tableNo;

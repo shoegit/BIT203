@@ -55,6 +55,17 @@ public class Restaurant {
         return theTable.addOrderToTable(numPax);
         
     }
+    
+    public ArrayList<Order> allOrders()
+    {
+        ArrayList<Order> orderList = new ArrayList<>();
+        for (Table t:tables)
+        {
+            orderList.addAll(t.getOrders());
+        }
+        return orderList;
+    }
+    
     public ArrayList<Table> getTables()
     {
         return tables;

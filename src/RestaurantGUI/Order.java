@@ -20,6 +20,10 @@ public class Order {
     private int numPax;
     private Table theTable;
     private ArrayList<OrderItem> orderedItems;
+
+    public ArrayList<OrderItem> getOrderedItems() {
+        return orderedItems;
+    }
     
     public Order(Table theTable, int numPax)
     {

@@ -40,6 +40,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         menuItemButton = new javax.swing.JButton();
         CreateOrderButton = new javax.swing.JButton();
+        viewOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,13 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
+        viewOrder.setText("View All Orders");
+        viewOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +82,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addGap(233, 233, 233)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(menuItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CreateOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(CreateOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,7 +95,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addComponent(menuItemButton)
                 .addGap(18, 18, 18)
                 .addComponent(CreateOrderButton)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(viewOrder)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,6 +115,12 @@ public class RestaurantGUI extends javax.swing.JFrame {
         NewOrderDialog orderDialog = new NewOrderDialog(this, true );
         orderDialog.setVisible(true);
     }//GEN-LAST:event_CreateOrderButtonActionPerformed
+
+    private void viewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewOrderActionPerformed
+        // TODO add your handling code here:
+        OrderStatusWindow osw = new OrderStatusWindow(rest, this);
+        osw.setVisible(true);
+    }//GEN-LAST:event_viewOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,5 +161,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton CreateOrderButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton menuItemButton;
+    private javax.swing.JButton viewOrder;
     // End of variables declaration//GEN-END:variables
 }
